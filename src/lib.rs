@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use proc_macro2::Literal;
-use quote::{quote, ToTokens};
-use syn::{self, parse_macro_input, Data, DeriveInput, Ident};
+use quote::{ToTokens, quote};
+use syn::{self, Data, DeriveInput, Ident, parse_macro_input};
 
 enum Ops {
     Add,

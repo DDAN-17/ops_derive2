@@ -28,18 +28,9 @@ fn struct_vector2() {
         y: i32,
     }
 
-    let a = Vector2 {
-        x: 5,
-        y: 5,
-    };
-    let b = Vector2 {
-        x: 6,
-        y: 2,
-    };
-    assert_eq!(a + b, Vector2 {
-        x: 11,
-        y: 7,
-    });
+    let a = Vector2 { x: 5, y: 5 };
+    let b = Vector2 { x: 6, y: 2 };
+    assert_eq!(a + b, Vector2 { x: 11, y: 7 });
 }
 
 #[test]
@@ -51,19 +42,7 @@ fn struct_vector3() {
         z: i32,
     }
 
-    let a = Vector3 {
-        x: 5,
-        y: 5,
-        z: 2,
-    };
-    let b = Vector3 {
-        x: 6,
-        y: 2,
-        z: 8,
-    };
-    assert_eq!(a + b, Vector3 {
-        x: 11,
-        y: 7,
-        z: 10,
-    });
+    let a = Vector3 { x: 5, y: 5, z: 2 };
+    let b = Vector3 { x: 6, y: 2, z: 8 };
+    assert_eq!(a + b, Vector3 { x: 11, y: 7, z: 10 });
 }
