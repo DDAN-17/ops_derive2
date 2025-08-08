@@ -1,7 +1,8 @@
 # ops-derive2
 This is a fork of the [ops-derive](https://crates.io/crates/ops_derive) crate.
-That crate doesn't support tuple structs, so this crate adds support for those.
-This crate also adds tests.
+## Extra features:
+- Tuple struct support
+- std::ops::* is implemented for Into\<T\> instead of T
 
 # Examples
 
