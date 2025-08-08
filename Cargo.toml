@@ -1,0 +1,16 @@
+[package]
+name = "ops-derive2"
+version = "0.1.0"
+edition = "2024"
+readme = "README.md"
+authors = ["bretzle <johnfish218@gmail.com>", "DDAN"]
+license = "MIT OR Apache-2.0"
+description = "Derive macros for implementing the std::ops traits."
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0.95"
+quote = "1.0.40"
+syn = { version = "2.0.104", features = ["full"] }
