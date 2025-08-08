@@ -146,42 +146,42 @@ fn complete_internal(name: &Ident, fields: &[Box<dyn ToTokens>], trait_: Ops) ->
     let (trait_name, func_header, operation) = match trait_ {
         Ops::Add => (
             quote! {Add},
-            quote! {add(self, rhs: Self) -> Self::Output},
+            quote! {add(self, rhs: T) -> Self::Output},
             quote! {+},
         ),
         Ops::Sub => (
             quote! {Sub},
-            quote! {sub(self, rhs: Self) -> Self::Output},
+            quote! {sub(self, rhs: T) -> Self::Output},
             quote! {-},
         ),
         Ops::Mul => (
             quote! {Mul},
-            quote! {mul(self, rhs: Self) -> Self::Output},
+            quote! {mul(self, rhs: T) -> Self::Output},
             quote! {*},
         ),
         Ops::Div => (
             quote! {Div},
-            quote! {div(self, rhs: Self) -> Self::Output},
+            quote! {div(self, rhs: T) -> Self::Output},
             quote! {/},
         ),
         Ops::AddAssign => (
             quote! {AddAssign},
-            quote! {add_assign(&mut self, rhs: Self)},
+            quote! {add_assign(&mut self, rhs: T)},
             quote! {+},
         ),
         Ops::SubAssign => (
             quote! {SubAssign},
-            quote! {sub_assign(&mut self, rhs: Self)},
+            quote! {sub_assign(&mut self, rhs: T)},
             quote! {-},
         ),
         Ops::MulAssign => (
             quote! {MulAssign},
-            quote! {mul_assign(&mut self, rhs: Self)},
+            quote! {mul_assign(&mut self, rhs: T)},
             quote! {*},
         ),
         Ops::DivAssign => (
             quote! {DivAssign},
-            quote! {div_assign(&mut self, rhs: Self)},
+            quote! {div_assign(&mut self, rhs: T)},
             quote! {/},
         ),
     };
@@ -197,10 +197,12 @@ fn complete_internal(name: &Ident, fields: &[Box<dyn ToTokens>], trait_: Ops) ->
     };
 
     let ret = quote! {
-        impl ::std::ops::#trait_name for #name {
+        impl<T: Into<#name>> ::std::ops::#trait_name<T> for #name {
             #output
 
             fn #func_header {
+                let rhs = rhs.into();
+
                 #deref #name {
                     #(
                         #fields: self.#fields #operation rhs.#fields,
